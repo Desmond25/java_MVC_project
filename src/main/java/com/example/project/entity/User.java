@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,6 +22,9 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private boolean active;
+
+    @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER)
+    List<Appointment> appointments;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))  //таблица не из бд
