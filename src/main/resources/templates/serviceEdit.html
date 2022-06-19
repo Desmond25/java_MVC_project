@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование услуги</title>
+</head>
+
+<body>
+    <h1>Редактирование услуги</h1>
+
+    <form action="#" th:action="@{/adminPage/services/{id}(id=${service.id})}" method="post" th:object="${service}">
+        <input type="hidden" name="userId" th:value="*{id}">
+
+        <p>Название услуги:
+            <input type="text" th:field="*{name}" th:value="*{name}">
+        </p>
+
+        <p>Специальность: <select th:field="*{speciality}">
+            <option th:each="speciality : ${specialities}"
+                    th:value="${speciality.id}" th:text="${speciality.name}">
+        </select></p>
+
+        <p>Стоимость услуги:
+            <input type="number" th:field="*{price}" th:value="*{price}">
+        </p>
+
+
+        <button type="submit">Изменить</button>
+    </form>
+</body>
+
+</html>

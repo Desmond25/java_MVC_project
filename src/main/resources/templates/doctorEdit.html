@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение врача</title>
+</head>
+
+<body>
+    <h1>Изменение врача</h1>
+    <h2>Врач: <span th:text="${doctor.user.username}"></span></h2>
+
+    <form action="#" th:action="@{/adminPage/doctors/{id}(id=${doctor.id})}" method="post" th:object="${doctor}">
+        <input type="hidden" name="doctorId" th:value="*{id}">
+
+        <p>Пользователь: <select th:field="*{user}">
+            <option th:each="user : ${users}"
+                th:value="${user.id}" th:text="${user.username}">
+        </select></p>
+
+        <p>Специальности:
+                <input type="checkbox" name="specialities"
+                       th:each="speciality : ${specialities}"
+                       th:text="${speciality.name}"
+                       th:value="${speciality.id}"
+                       th:field="*{specialities}"
+                />
+        </p>
+
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+
+</html>

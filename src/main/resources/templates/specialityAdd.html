@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление специальности</title>
+</head>
+
+<body>
+    <h1>Добавление специальности</h1>
+
+    <form action="#" th:action="@{/adminPage/specialities/add}" method="post" th:object="${speciality}">
+
+        <p>Название специальности:
+            <input type="text" th:field="*{name}">
+        </p>
+
+        <button type="submit">Добавить</button>
+    </form>
+</body>
+
+</html>

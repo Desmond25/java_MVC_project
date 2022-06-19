@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> </title>
+</head>
+
+<body>
+    <h1>Список услуг</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th><th>Название</th><th>Специальность</th><th>Цена</th><th></th><th></th><th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="service : ${services}">
+            <td th:text="${service.id}">
+            <td th:text="${service.name}">
+            <td th:text="${service.speciality.name}">
+            <td th:text="${service.price}">
+            <td><label th:text="${service.isActive} ? 'Активна' : 'Не активна'"></label></a></td>
+            <td><a th:href="@{/adminPage/services/{id}(id=${service.id})}">Изменить</a></td>
+            <td><a th:href="@{/adminPage/services/{id}/ban(id=${service.id})}"><label th:text="${service.isActive} ?
+                        'Заблокировать' : 'Разблокировать'"></label></a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div>&nbsp;</div>
+    <div><a href="/adminPage/services/add">Добавить</a></div>
+    <div>&nbsp;</div>
+    <div><a href="/">Вернуться на главную страницу</a></div>
+</body>
+
+</html>

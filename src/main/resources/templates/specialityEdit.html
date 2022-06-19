@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование специальности</title>
+</head>
+
+<body>
+    <h1>Редактирование специальности</h1>
+
+    <form action="#" th:action="@{/adminPage/specialities/{id}(id=${speciality.id})}" method="post" th:object="${speciality}">
+
+        <p>Название специальности:
+            <input type="text" th:field="*{name}">
+        </p>
+
+        <button type="submit">Изменить</button>
+    </form>
+</body>
+
+</html>

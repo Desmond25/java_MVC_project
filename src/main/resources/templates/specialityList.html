@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> </title>
+</head>
+
+<body>
+    <h1>Список специальностей</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th><th>Название</th><th></th><th></th><th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="speciality : ${specialities}">
+            <td th:text="${speciality.id}">
+            <td th:text="${speciality.name}">
+            <td><label th:text="${speciality.isActive} ? 'Активна' : 'Не активна'"></label></a></td>
+            <td><a th:href="@{/adminPage/specialities/{id}(id=${speciality.id})}">Изменить</a></td>
+            <td><a th:href="@{/adminPage/specialities/{id}/ban(id=${speciality.id})}"><label th:text="${speciality.isActive} ?
+                        'Заблокировать' : 'Разблокировать'"></label></a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div>&nbsp;</div>
+    <div><a href="/adminPage/specialities/add">Добавить</a></div>
+    <div>&nbsp;</div>
+    <div><a href="/">Вернуться на главную страницу</a></div>
+</body>
+
+</html>

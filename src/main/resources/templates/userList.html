@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> </title>
+</head>
+
+<body>
+    <h1>Список пользователей</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th><th>Логин</th><th>Пароль</th><th>Роли</th><th></th><th></th><th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}">
+                <td th:text="${user.username}">
+                <td th:text="${user.password}">
+                <td th:text="${user.roles}">
+                <td><label th:text="${user.isActive} ? 'Активный' : 'Не активный'"></label></a></td>
+<!--                <td th:text="${user.isActive}">-->
+                <td><a th:href="@{/adminPage/users/{id}(id=${user.id})}">Изменить</a></td>
+                <td><a th:href="@{/adminPage/users/{id}/ban(id=${user.id})}"><label th:text="${user.isActive} ?
+                    'Заблокировать' : 'Разблокировать'"></label></a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div>&nbsp;</div>
+    <div><a href="/">Вернуться на главную страницу</a></div>
+
+</body>
+
+</html>

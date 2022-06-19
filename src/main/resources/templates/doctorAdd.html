@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление врача</title>
+</head>
+
+<body>
+    <h1>Добавление врача</h1>
+
+    <form action="#" th:action="@{/adminPage/doctors/add}" method="post" th:object="${doctor}">
+
+        <p>Пользователь: <select th:field="*{user}">
+            <option th:each="user : ${users}"
+                th:value="${user.id}" th:text="${user.username}">
+        </select></p>
+
+<!--        <p>Специальности:-->
+<!--            <div th:each="speciality : ${specialities}">-->
+<!--                <label th:for="${speciality}" th:text="${speciality.name}"></label>-->
+<!--                <input type="checkbox" th:checked="${#lists.contains(doctor.specialities, speciality)}"-->
+<!--                       th:name="${speciality}">-->
+<!--            </div>-->
+<!--        </p>-->
+
+        <p>Специальности:
+<!--            <div th:each="speciality : ${specialities}">-->
+<!--                <input type="checkbox" th:name="${speciality}" th:value="${speciality.id}">-->
+<!--                <label th:text="${speciality.name}"></label>-->
+                <input type="checkbox" name="specialities"
+                       th:each="speciality : ${specialities}"
+                       th:text="${speciality.name}"
+                       th:value="${speciality.id}"
+                       th:field="*{specialities}"
+                />
+        </p>
+
+        <button type="submit">Добавить</button>
+    </form>
+</body>
+
+</html>
