@@ -33,7 +33,7 @@ public class Doctor {
     )
     private Set<Speciality> specialities;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "doctor_reception_hour",
             joinColumns = @JoinColumn(name = "doctor_id"),
