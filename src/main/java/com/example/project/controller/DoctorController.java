@@ -4,26 +4,22 @@ import com.example.project.entity.*;
 import com.example.project.repos.DoctorRepo;
 import com.example.project.repos.SpecialityRepo;
 import com.example.project.repos.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 @Controller
 @RequestMapping("/adminPage/doctors")
 public class DoctorController {
-    @Autowired
-    DoctorRepo doctorRepo;
-    @Autowired
-    UserRepo userRepo;
-    @Autowired
-    SpecialityRepo specialityRepo;
+    private final DoctorRepo doctorRepo;
+    private final UserRepo userRepo;
+    private final SpecialityRepo specialityRepo;
+
+    public DoctorController(DoctorRepo doctorRepo, UserRepo userRepo, SpecialityRepo specialityRepo) {
+        this.doctorRepo = doctorRepo;
+        this.userRepo = userRepo;
+        this.specialityRepo = specialityRepo;
+    }
 
     @GetMapping
     public String doctorList(Model model) {
