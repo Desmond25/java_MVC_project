@@ -16,7 +16,7 @@
         <tbody>
             <tr th:each="doctor : ${doctors}">
                 <td th:text="${doctor.id}">
-                <td th:text="${doctor.user.username}">
+                <td th:text="${doctor.user.fullName}">
 <!--                <td th:text="${doctor.specialities}">-->
                 <td th:each="speciality : ${doctor.specialities}">
                     <label th:text="${speciality.name}"></label></td>
@@ -24,6 +24,7 @@
                 <td><a th:href="@{/adminPage/doctors/{id}(id=${doctor.id})}">Изменить</a></td>
                 <td><a th:href="@{/adminPage/doctors/{id}/ban(id=${doctor.id})}"><label th:text="${doctor.isActive} ?
                     'Заблокировать' : 'Разблокировать'"></label></a></td>
+                <td><a th:href="@{/adminPage/appointments/add/{id}(id=${doctor.id})}">Записать на приём</a></td>
             </tr>
         </tbody>
     </table>

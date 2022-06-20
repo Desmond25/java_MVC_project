@@ -23,10 +23,8 @@ public class DoctorController {
 
     @GetMapping
     public String doctorList(Model model) {
-//        doctorRepo.deleteAll();
-//        System.out.println(doctorRepo.findAll());
         model.addAttribute("doctors", doctorRepo.findAll());
-        return "doctorList";
+        return "admin/doctorList";
     }
 
     @GetMapping("/add")
@@ -34,7 +32,7 @@ public class DoctorController {
         model.addAttribute("doctor", new Doctor());
         model.addAttribute("users", userRepo.findAll());
         model.addAttribute("specialities", specialityRepo.findAll());
-        return "doctorAdd";
+        return "admin/doctorAdd";
     }
 
     @PostMapping("/add")
@@ -51,7 +49,7 @@ public class DoctorController {
         model.addAttribute("specialities", specialityRepo.findAll());
         model.addAttribute("doctor", doctor);
 
-        return "doctorEdit";
+        return "admin/doctorEdit";
     }
 
     @PostMapping("{doctor}")

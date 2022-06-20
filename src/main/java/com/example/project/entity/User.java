@@ -20,20 +20,23 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
+    private String fullName;
     private String password;
     private boolean active;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER)
-    List<Appointment> appointments;
+    private Set<Appointment> appointments;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))  //таблица не из бд
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
-    public User(Long id, String username, String password, boolean active, Set<Role> roles) {
+    public User(Long id, String username, String fullName, String password, boolean active, Set<Role> roles) {
         this.id = id;
         this.username = username;
+        this.fullName = fullName;
         this.password = password;
         this.active = active;
         this.roles = roles;
@@ -50,6 +53,7 @@ public class User implements UserDetails {
         this.id = id;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
@@ -58,6 +62,15 @@ public class User implements UserDetails {
         this.username = username;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    @Override
     public String getPassword() {
         return password;
     }
@@ -82,6 +95,13 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public Set<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(Set<Appointment> appointments) {
+        this.appointments = appointments;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

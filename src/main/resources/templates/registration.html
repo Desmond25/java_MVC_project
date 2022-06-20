@@ -8,9 +8,10 @@
 
   <body>
   <h1>Регистрация</h1>
-  <div th:text="${message}"></div>
+  <label th:text="${message}"></label>
     <form th:action="@{/registration}" method="post">
       <div><label> Имя пользователя: <input type="text" name="username"/> </label></div>
+      <div><label> ФИО: <input type="text" name="fullName"/> </label></div>
       <div><label> Пароль: <input type="password" name="password"/> </label></div>
       <div><input type="submit" value="Регистрация"/></div>
     </form>

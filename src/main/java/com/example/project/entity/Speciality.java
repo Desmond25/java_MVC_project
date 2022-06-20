@@ -2,10 +2,8 @@ package com.example.project.entity;
 
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @ToString
@@ -15,6 +13,10 @@ public class Speciality {
     private Long id;
     private String name;
     private boolean isActive;
+
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "specialities")
+    private List<Doctor> doctors;
 
     public Speciality(Long id, String name, boolean isActive) {
         this.id = id;
@@ -47,5 +49,13 @@ public class Speciality {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public List<Doctor> getDoctors() {
+        return doctors;
+    }
+
+    public void setDoctors(List<Doctor> doctors) {
+        this.doctors = doctors;
     }
 }

@@ -16,13 +16,13 @@ public class SpecialityController {
     @GetMapping
     public String specialityList(Model model) {
         model.addAttribute("specialities", specialityRepo.findAll());
-        return "specialityList";
+        return "admin/specialityList";
     }
 
     @GetMapping("/add")
     public String specialityAdd(Model model) {
         model.addAttribute("speciality", new Speciality());
-        return "specialityAdd";
+        return "admin/specialityAdd";
     }
 
     @PostMapping("/add")
@@ -36,7 +36,7 @@ public class SpecialityController {
     public String specialityEdit(@PathVariable Speciality speciality, Model model){
         model.addAttribute("speciality", speciality);
 
-        return "specialityEdit";
+        return "admin/specialityEdit";
     }
 
     @PostMapping("{speciality}")

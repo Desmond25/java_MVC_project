@@ -20,14 +20,14 @@ public class ServiceController {
     @GetMapping
     public String serviceList(Model model) {
         model.addAttribute("services", serviceRepo.findAll());
-        return "serviceList";
+        return "admin/serviceList";
     }
 
     @GetMapping("/add")
     public String serviceAdd(Model model) {
         model.addAttribute("specialities", specialityRepo.findAll());
         model.addAttribute("service", new Service());
-        return "serviceAdd";
+        return "admin/serviceAdd";
     }
 
     @PostMapping("/add")
@@ -42,7 +42,7 @@ public class ServiceController {
         model.addAttribute("specialities", specialityRepo.findAll());
         model.addAttribute("service", service);
 
-        return "serviceEdit";
+        return "admin/serviceEdit";
     }
 
     @PostMapping("{service}")

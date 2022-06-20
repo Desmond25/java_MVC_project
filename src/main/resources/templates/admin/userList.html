@@ -10,13 +10,14 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th><th>Логин</th><th>Пароль</th><th>Роли</th><th></th><th></th><th></th>
+                <th>Id</th><th>Логин</th><th>ФИО</th><th>Пароль</th><th>Роли</th><th></th><th></th><th></th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="user : ${users}">
                 <td th:text="${user.id}">
                 <td th:text="${user.username}">
+                <td th:text="${user.fullName}">
                 <td th:text="${user.password}">
                 <td th:text="${user.roles}">
                 <td><label th:text="${user.isActive} ? 'Активный' : 'Не активный'"></label></a></td>

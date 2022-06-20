@@ -1,18 +1,11 @@
 package com.example.project.entity;
 
-import lombok.*;
-import org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration;
+import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Doctor {
     @Id
@@ -33,24 +26,26 @@ public class Doctor {
     )
     private Set<Speciality> specialities;
 
-    @ManyToMany()
-    @JoinTable(
-            name = "doctor_reception_hour",
-            joinColumns = @JoinColumn(name = "doctor_id"),
-            inverseJoinColumns = @JoinColumn(name = "reception_hour_id")
-    )
-    @ToString.Exclude
-    private List<ReceptionHour> receptionHours;
+//    @ToString.Exclude
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "doctor_reception_hour",
+//            joinColumns = @JoinColumn(name = "doctor_id"),
+//            inverseJoinColumns = @JoinColumn(name = "reception_hour_id")
+//    )
+//    private List<ReceptionHour> receptionHours;
 
     @OneToMany(mappedBy = "doctor")
-    @ToString.Exclude
-    List<Appointment> appointments;
+    private Set<Appointment> appointments;
 
     public Doctor(Long id, User user, Set<Speciality> specialities, boolean isActive) {
         this.id = id;
         this.user = user;
         this.specialities = specialities;
         this.isActive = isActive;
+    }
+
+    public Doctor() {
     }
 
     public Long getId() {
@@ -83,5 +78,21 @@ public class Doctor {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+//    public List<ReceptionHour> getReceptionHours() {
+//        return receptionHours;
+//    }
+//
+//    public void setReceptionHours(List<ReceptionHour> receptionHours) {
+//        this.receptionHours = receptionHours;
+//    }
+
+    public Set<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(Set<Appointment> appointments) {
+        this.appointments = appointments;
     }
 }
